@@ -6,11 +6,10 @@ interface HeroSectionProps {
   image: string;
   title: string;
   subtitle: string;
-  message: string;
   githubUrl: string;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ image, title, subtitle, message, githubUrl }) => (
+export const HeroSection: React.FC<HeroSectionProps> = ({ image, title, subtitle, githubUrl }) => (
   <motion.section
     initial={{ opacity: 0, y: 40 }}
     animate={{ opacity: 1, y: 0 }}
@@ -31,7 +30,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ image, title, subtitle
     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
       {subtitle}
       <br />
-      <span className="text-base text-accent-foreground">{message}</span>
     </p>
     <Button asChild size="lg" className="mt-4">
       <a href={githubUrl} target="_blank" rel="noopener noreferrer">

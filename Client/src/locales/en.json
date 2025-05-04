@@ -1,0 +1,11 @@
+{
+    "welcome": "Welcome",
+    "description": "This is a Vite + React + TS app",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "contact": "Contact",
+      "books": "Books",
+      "chapters": "Chapters"
+    }
+  }
