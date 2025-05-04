@@ -10,14 +10,16 @@ import ErrorPage from './error';
 import Books from './Books';
 import Book from './Book';
 
-import * as loaders from '@/loaders'
+// Loaders
 
+import * as loaders from '@/loaders'
+import PageSpinner from '@/components/Atoms/PageSpinner';
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
-    children: [
+        children: [
       {
         index: true,
         element: <Home />,
@@ -35,13 +37,14 @@ export const router = createBrowserRouter([
       {
         path: 'books',
         element: <Books />,
-        // nested routes
-        children: [
-          {
-            path: ':name-slug',
-            element: <Book />,
-          },
-        ],
+        loader: loaders.booksLoader,
+        HydrateFallback: () => <PageSpinner />,
+      },
+      {
+        path: 'books/:slug',
+        element: <Book />,
+        loader: loaders.bookLoader,
+        HydrateFallback: () => <PageSpinner />,
       },
       {
         path: 'docs/:slug',

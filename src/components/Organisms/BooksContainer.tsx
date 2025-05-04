@@ -1,15 +1,14 @@
-import BookCard, { type Book } from '@/components/Molecules/BookCard'
-
+import BookCard from '@/components/Molecules/BookCard'
+import { Book } from '@/types'
 export interface BooksContainerProps {
   books: Book[];
-  onRead: (book: Book) => void;
 }
 
-export default function BooksContainer({ books, onRead }: BooksContainerProps) {
+export default function BooksContainer({ books }: BooksContainerProps) {
   return (
-    <section className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <section className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-8">
       {books.map((book) => (
-        <BookCard key={book.id} book={book} onRead={onRead} />
+        <BookCard key={book.id} book={book}/>
       ))}
     </section>
   );

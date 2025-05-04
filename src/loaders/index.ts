@@ -1,3 +1,5 @@
-import homeLoader from "./homeLoader";
+import homeLoader from "./homeLoader.ts";
+import bookLoader from "./bookLoader.ts";
+import booksLoader from "./booksLoader.ts";
 
-export { homeLoader };
+export { homeLoader, bookLoader, booksLoader };
