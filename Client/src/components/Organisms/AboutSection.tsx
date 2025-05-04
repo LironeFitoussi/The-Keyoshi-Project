@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Avatar } from '@/components/Atoms/Avatar';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface AboutSectionProps {
   avatar: string;
@@ -9,7 +10,9 @@ interface AboutSectionProps {
   className?: string;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ avatar, aboutText, className }) => (
+export const AboutSection: React.FC<AboutSectionProps> = ({ avatar, aboutText, className }) => {
+  const { t } = useTranslation();
+  return (
   <motion.section
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -22,7 +25,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ avatar, aboutText, c
     </div>
     <Card className="flex-1 p-6">
       <CardHeader>
-        <CardTitle>About the Project</CardTitle>
+        <CardTitle>{t("home.about.about")}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-muted-foreground text-base">{aboutText}</p>
@@ -30,3 +33,4 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ avatar, aboutText, c
     </Card>
   </motion.section>
 ); 
+}

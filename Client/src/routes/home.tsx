@@ -60,19 +60,15 @@ export default function Home() {
 
       <HeroSection
         image="https://c4.wallpaperflare.com/wallpaper/870/204/59/avatar-the-last-airbender-avatar-the-last-air-bender-wallpaper-preview.jpg"
-        title="The Keyoshi Project"
-        subtitle="Open Source. Open Story. Bringing Avatar: The Last Airbender chronicles to Hebrew speakers."
+        title={t("home.hero.title")}
+        subtitle={t("home.hero.subtitle")}
         githubUrl="https://github.com/your-org/your-repo"
       />
       <AboutSection
         avatar="https://wallpapercave.com/wp/wp7916843.jpg"
         aboutText={
           <>
-            <b>The Keyoshi Project</b> is an open-source initiative dedicated to
-            translating the Avatar: The Last Airbender chronicles into Hebrew.
-            Our goal is to make these beloved stories accessible to Hebrew
-            speakers everywhere, powered by community collaboration and a love
-            for the Avatar universe.
+            <b>{t("home.about.title")}</b> {t("home.about.content")}
           </>
         }
       />

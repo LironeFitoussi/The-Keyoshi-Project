@@ -7,5 +7,17 @@
       "contact": "Contact",
       "books": "Books",
       "chapters": "Chapters"
+    },
+    "home": {
+      "hero": {
+        "title": "Keyoshi Project",
+        "subtitle": "Open Source. Open Story. Bringing Avatar: The Last Airbender chronicles to Hebrew speakers.",
+        "githubstar": "Star us on GitHub"
+      },
+      "about": {
+        "about": "About the Project",
+        "title": "Keyoshi Project",
+        "content": "It is an open-source initiative dedicated to translating the Avatar: The Last Airbender chronicles into Hebrew. Our goal is to make these beloved stories accessible to Hebrew speakers everywhere, powered by community collaboration and a love for the Avatar universe."
+      }
     }
   }

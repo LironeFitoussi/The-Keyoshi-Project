@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-
+import { useTranslation } from 'react-i18next';
 interface HeroSectionProps {
   image: string;
   title: string;
@@ -9,7 +9,9 @@ interface HeroSectionProps {
   githubUrl: string;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ image, title, subtitle, githubUrl }) => (
+export const HeroSection: React.FC<HeroSectionProps> = ({ image, title, subtitle, githubUrl }) => {
+  const { t } = useTranslation();
+  return (
   <motion.section
     initial={{ opacity: 0, y: 40 }}
     animate={{ opacity: 1, y: 0 }}
@@ -33,8 +35,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ image, title, subtitle
     </p>
     <Button asChild size="lg" className="mt-4">
       <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-        ⭐ Star us on GitHub
+        ⭐ {t("home.hero.githubstar")}
       </a>
     </Button>
   </motion.section>
 ); 
+}
