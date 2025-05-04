@@ -22,8 +22,8 @@ export default function LanguageSwitcher() {
         <SelectValue>{i18n.language === 'en' ? 'English' : 'Hebrew'}</SelectValue>
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="en">English</SelectItem>
-        <SelectItem value="he">Hebrew</SelectItem>
+        <SelectItem value="en">English 🇺🇸</SelectItem>
+        <SelectItem value="he">Hebrew 🇮🇱</SelectItem>
       </SelectContent>
     </Select>
   );
