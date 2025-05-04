@@ -1,0 +1,30 @@
+{
+	"name": "ts-express-server",
+	"version": "1.0.0",
+	"description": "Express typescript powered server, with paths aliases configuration by default.",
+	"main": "src/main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "tsnd --respawn --rs --cls -r tsconfig-paths/register src/server.ts",
+		"build": "tsc && tsc-alias",
+		"start": "node dist/src/main.js"
+	},
+	"license": "ISC",
+	"devDependencies": {
+		"@types/cors": "^2.8.17",
+		"@types/express": "^5.0.1",
+		"@types/morgan": "^1.9.9",
+		"@types/node": "^22.15.3",
+		"ts-node-dev": "^2.0.0",
+		"tsc-alias": "^1.8.15",
+		"tsconfig-paths": "^4.2.0",
+		"typescript": "^5.8.3"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.5.0",
+		"express": "^5.1.0",
+		"mongoose": "^8.14.1",
+		"morgan": "^1.10.0"
+	}
+}

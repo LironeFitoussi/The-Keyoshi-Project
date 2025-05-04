@@ -9,7 +9,7 @@ function BookCard({ book,}: {
 }) {
   const navigate = useNavigate();
   return (
-    <motion.div whileHover={{ scale: 1.03 }} className="cursor-pointer">
+    <motion.div whileHover={{ scale: 1.03 }}>
       <Card className="flex h-full flex-col rounded-2xl shadow-md p-0">
         <BookImage src={book.coverImage} alt={`Cover of ${book.title}`} />
         <CardContent className="flex flex-1 flex-col gap-2 p-4">
