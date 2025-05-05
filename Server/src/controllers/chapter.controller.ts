@@ -115,6 +115,31 @@ export const updateChapterById = async (req: Request, res: Response) => {
   }
 };
 
+export const insertChpapterContent = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  try {
+    const chapter = await Chapter.findByIdAndUpdate(id, { content }, { new: true });
+    if (!chapter) {
+      return res.status(404).json({
+        success: false,
+        message: 'Chapter not found'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Chapter content updated successfully',
+      data: chapter
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Chapter content updating failed',
+      error: handleMongooseError(error)
+    });
+  }
+};
+
 // Delete a chapter by ID
 export const deleteChapterById = async (req: Request, res: Response) => {
   const { id } = req.params;

@@ -101,3 +101,52 @@ export const getBookBySlug = async (req: Request, res: Response) => {
     });
   }
 };
+
+/**
+ * @route PUT /api/v1/books/:id
+ * @desc Update a book by id
+ * @access Public
+ */
+export const updateBookById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { title, author, description, coverImage } = req.body;
+
+  try {
+    const book = await Book.findByIdAndUpdate(id, { title, author, description, coverImage }, { new: true });
+    res.status(200).json({
+      success: true,
+      message: 'Book updated successfully',
+      data: book,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Book updating failed',
+      error: handleMongooseError(error),
+    });
+  }
+};
+
+/**
+ * @route DELETE /api/v1/books/:id
+ * @desc Delete a book by id
+ * @access Public
+ */
+
+export const deleteBookById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    await Book.findByIdAndDelete(id);
+    res.status(200).json({
+      success: true,
+      message: 'Book deleted successfully',
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Book deletion failed',
+      error: handleMongooseError(error),
+    });
+  }
+};

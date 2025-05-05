@@ -21,7 +21,7 @@ export const getBookBySlug = async (slug: string) => {
     if (!res.data || !res.data.data) {
       throw new Error('Invalid response format from API');
     }
-    console.log('Book data received:', res.data);
+    // console.log('Book data received:', res.data);
     return res.data.data;
   } catch (error) {
     console.error(`Failed to fetch book with slug ${slug}:`, error);

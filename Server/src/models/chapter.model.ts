@@ -5,6 +5,7 @@ export interface IChapter extends Document {
   hebrewTitle: string;
   index: number;
   content: string;
+  isTranslated: boolean;
   bookId: mongoose.Types.ObjectId;
   createdAt: Date;
 }
@@ -14,6 +15,7 @@ const chapterSchema: Schema<IChapter> = new Schema({
   hebrewTitle: { type: String, required: true },
   index: { type: Number, required: true },
   content: { type: String, required: true },
+  isTranslated: { type: Boolean, default: false },
   bookId: { type: mongoose.Schema.Types.ObjectId, ref: 'Book', required: true },
   createdAt: { type: Date, default: Date.now },
 });
