@@ -118,24 +118,62 @@ export const updateChapterById = async (req: Request, res: Response) => {
 export const insertChpapterContent = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { content } = req.body;
+
   try {
-    const chapter = await Chapter.findByIdAndUpdate(id, { content, isTranslated: true }, { new: true });
+    // Step 1: Replace "--" with double break
+    let processedContent = content.replace(/--/g, '<br/><br/>');
+
+    // Step 2: Word-based punctuation-aware line breaking
+    const words = processedContent.split(/\s+/);
+    let result = '';
+    let wordBuffer: string[] = [];
+    let wordCount = 0;
+
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i];
+      wordBuffer.push(word);
+      wordCount++;
+
+      if (wordCount >= 100) {
+        const lastWord = word.trim();
+        const endsWithPunctuation = /[.,!?]$/.test(lastWord);
+
+        if (endsWithPunctuation) {
+          result += wordBuffer.join(' ') + ' <br/> ';
+          wordBuffer = [];
+          wordCount = 0;
+        }
+      }
+    }
+
+    // Add remaining words
+    if (wordBuffer.length > 0) {
+      result += wordBuffer.join(' ');
+    }
+
+    const chapter = await Chapter.findByIdAndUpdate(
+      id,
+      { content: result.trim(), isTranslated: true },
+      { new: true }
+    );
+
     if (!chapter) {
       return res.status(404).json({
         success: false,
-        message: 'Chapter not found'
+        message: 'Chapter not found',
       });
     }
+
     res.status(200).json({
       success: true,
       message: 'Chapter content updated successfully',
-      data: chapter
+      data: chapter,
     });
   } catch (error: any) {
     res.status(500).json({
       success: false,
       message: 'Chapter content updating failed',
-      error: handleMongooseError(error)
+      error: handleMongooseError(error),
     });
   }
 };

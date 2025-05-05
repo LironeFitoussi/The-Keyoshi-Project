@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { Card, CardContent } from "../ui/card";
 import BookMainCard from "../Molecules/BookMainCard";
 import ChapterDisplayer from "../Molecules/ChapterDisplayer";
@@ -15,7 +15,6 @@ interface BookDetailsProps {
 }
 
 const BookDetails: React.FC<BookDetailsProps> = ({ book, onAddChapter }) => {
-
   const [selectedChapter, setSelectedChapter] = useState<Chapter | null>({
     title: "No Chapter Selected",
     hebrewTitle: "No Chapter Selected",
@@ -24,16 +23,21 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book, onAddChapter }) => {
     index: 0,
     _id: "No Chapter Selected",
   });
+  console.log(selectedChapter);
   return (
     <Card className="p-6">
-      <CardContent className="grid grid-cols-5 gap-6">
-        <div className="col-span-1">
+      <CardContent className="grid grid-cols-1 sm:grid-cols-5 gap-6">
+        <div className="sm:col-span-1">
           <BookMainCard book={book} />
         </div>
-        <div className="col-span-4">
-          <ChapterDisplayer title={selectedChapter!.title} text={selectedChapter!.content} />
+        <div className="sm:col-span-4">
+          <ChapterDisplayer
+            title={selectedChapter!.title}
+            text={selectedChapter!.content}
+          />
         </div>
       </CardContent>
+
       <div>
         <div className="flex items-center justify-between px-2 mt-4">
           <h1 className="text-xl font-semibold">Chapters</h1>
@@ -44,10 +48,13 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book, onAddChapter }) => {
             title="Add Chapter"
           />
         </div>
-        <ChaptersList chapters={book.chapters} onChapterSelect={setSelectedChapter} />
+        <ChaptersList
+          chapters={book.chapters}
+          onChapterSelect={setSelectedChapter}
+        />
       </div>
     </Card>
-  )
+  );
 };
 
-export default BookDetails; 
+export default BookDetails;
