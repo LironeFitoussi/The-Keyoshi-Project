@@ -37,7 +37,7 @@ const apiEndpoints = [
   },
 ];
 
-const ApiDocumentationPage: React.FC = () => (
+const ApiPage: React.FC = () => (
   <main className="py-12 px-4 min-h-screen bg-muted">
     <h1 className="text-3xl font-bold text-center mb-10">API Documentation</h1>
     {apiEndpoints.map((ep, idx) => (
@@ -46,4 +46,4 @@ const ApiDocumentationPage: React.FC = () => (
   </main>
 );
 
-export default ApiDocumentationPage; 
+export default ApiPage; 

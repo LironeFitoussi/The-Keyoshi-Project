@@ -6,7 +6,7 @@ import {
   updateChapterById,
   deleteChapterById
 } from '../controllers/chapter.controller';
-import { validateBody } from '../../utils/healthyBody.middlware';
+import { validateBody } from '../utils/healthyBody.middlware';
 
 const router = Router();
 

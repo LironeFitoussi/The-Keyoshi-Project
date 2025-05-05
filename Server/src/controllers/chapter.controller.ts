@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Chapter from '../models/chapter.model';
-import { handleMongooseError } from '../../utils/mogoose.handler';
+import { handleMongooseError } from '../utils/mogoose.handler';
 import Book from '../models/book.model';
 
 // Create a new chapter
@@ -130,7 +130,7 @@ export const deleteChapterById = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       message: 'Chapter deleted successfully',
-      data: chapter
+      data: {}
     });
   } catch (error: any) {
     res.status(500).json({

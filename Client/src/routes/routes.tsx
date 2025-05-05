@@ -9,7 +9,7 @@ import MarkdownPage from './markdown';
 import ErrorPage from './error';
 import Books from './Books';
 import Book from './Book';
-import ApiRoute from "./api";
+import ApiPage from './ApiPage';
 
 // Loaders
 
@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/api",
-        element: <ApiRoute />,
+        element: <ApiPage />,
       },
     ],
   },

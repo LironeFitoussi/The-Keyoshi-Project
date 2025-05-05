@@ -19,6 +19,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"allowUnreachableCode": false
 	},
-	"include": ["src/**/*", "utils"],
+	"include": ["src/**/*", "src/utils"],
 	"exclude": ["node_modules"]
 }

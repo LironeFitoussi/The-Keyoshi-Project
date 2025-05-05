@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Book from '../models/book.model';
-import { handleMongooseError } from '../../utils/mogoose.handler';
+import { handleMongooseError } from '../utils/mogoose.handler';
 
 /**
  * @route POST /api/v1/books
