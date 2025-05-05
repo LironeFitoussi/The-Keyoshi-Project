@@ -6,6 +6,7 @@ const navigationItems = [
     { to: "/about", label: "nav.about" },
     { to: "/contact", label: "nav.contact" },
     { to: "/books", label: "nav.books" },
+    { to: "/api", label: "nav.api" },
 ]
 
 export function NavLinks() {

@@ -6,7 +6,8 @@
     "about": "About",
     "contact": "Contact",
     "books": "Books",
-    "chapters": "Chapters"
+    "chapters": "Chapters",
+    "api": "API"
   },
   "home": {
     "hero": {
@@ -59,6 +60,52 @@
       "title": "Ready to join the journey?",
       "buttonText": "Contribute on GitHub",
       "subtitle": "Join us and help bring the Avatar stories to more fans!"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Keyoshi Project: The Avatar Hebrew Initiative",
+      "tagline": "Uniting fans and translators to bring the Avatar universe to Hebrew speakers everywhere.",
+      "logoAlt": "Project Logo"
+    },
+    "missionSection": {
+      "missionTitle": "Our Mission",
+      "mission": "To make the world of Avatar accessible to Hebrew speakers through open-source translation, community passion, and creative collaboration.",
+      "visionTitle": "Our Vision",
+      "vision": "A global, inclusive fan community where stories transcend language barriers and everyone can experience the magic of Avatar.",
+      "values": [
+        { "icon": "🌍", "title": "Inclusivity", "description": "We believe everyone deserves access to great stories, regardless of language." },
+        { "icon": "🤝", "title": "Collaboration", "description": "Fans, linguists, and creators working together for a common goal." },
+        { "icon": "🔥", "title": "Passion", "description": "Fueled by love for the Avatar universe and the Hebrew language." }
+      ]
+    },
+    "teamSection": {
+      "title": "Meet the Team",
+      "members": [
+        { "avatar": "https://randomuser.me/api/portraits/men/32.jpg", "name": "Avi Cohen", "role": "Project Lead", "bio": "Open-source enthusiast and lifelong Avatar fan." },
+        { "avatar": "https://randomuser.me/api/portraits/women/44.jpg", "name": "Noa Levi", "role": "Lead Translator", "bio": "Professional translator and lover of fantasy worlds." },
+        { "avatar": "https://randomuser.me/api/portraits/men/45.jpg", "name": "David Azulay", "role": "Community Manager", "bio": "Connecting fans and building bridges across cultures." }
+      ]
+    },
+    "communitySection": {
+      "title": "Community Spotlight",
+      "highlights": [
+        { "image": "https://i.imgur.com/8Km9tLL.jpg", "title": "Fan Art: Kyoshi", "description": "Stunning artwork by community member Lior." },
+        { "image": "https://i.imgur.com/2nCt3Sbl.jpg", "title": "Translation Marathon", "description": "A weekend event where fans translated 5 chapters together!" },
+        { "image": "https://i.imgur.com/1A5QH0W.jpg", "title": "Avatar Quiz Night", "description": "Test your Avatar knowledge and win exclusive prizes." }
+      ]
+    },
+    "timelineSection": {
+      "title": "Project Timeline",
+      "milestones": [
+        { "year": "2022", "title": "Project Founded", "description": "A small group of fans launches the Keyoshi Project." },
+        { "year": "2023", "title": "First Book Translated", "description": "The Rise of Kyoshi is fully translated and released in Hebrew." },
+        { "year": "2024", "title": "Community Milestone", "description": "Over 1,000 fans join the Discord and contribute to translations." }
+      ]
+    },
+    "joinUsBanner": {
+      "message": "Ready to join the journey? Become part of the Keyoshi Project community!",
+      "buttonText": "Join us on GitHub"
     }
   }
 }

@@ -6,7 +6,8 @@
         "about": "אודות",
         "contact": "צור קשר",
         "books": "ספרים",
-        "chapters": "פרקים"
+        "chapters": "פרקים",
+        "api": "API"
     },
     "home": {
         "hero": {
@@ -59,6 +60,52 @@
             "title": "רוצה להצטרף למסע?",
             "buttonText": "תרום בגיטהב",
             "subtitle": "הצטרף אלינו ועזור להפוך את סיפורי אווטאר בעברית לנגישים בכל מקום!"
+        }
+    },
+    "aboutPage": {
+        "hero": {
+            "title": "פרויקט קיושי: יוזמת האווטאר בעברית",
+            "tagline": "מאחדים מעריצים ומתרגמים כדי להביא את עולם האווטאר לדוברי עברית בכל מקום.",
+            "logoAlt": "לוגו הפרויקט"
+        },
+        "missionSection": {
+            "missionTitle": "המשימה שלנו",
+            "mission": "להנגיש את עולם האווטאר לדוברי עברית באמצעות תרגום קוד פתוח, תשוקה קהילתית ושיתוף פעולה יצירתי.",
+            "visionTitle": "החזון שלנו",
+            "vision": "קהילה גלובלית ומכילה בה סיפורים חוצים גבולות שפה וכל אחד יכול לחוות את קסם האווטאר.",
+            "values": [
+                { "icon": "🌍", "title": "הכלה", "description": "כולנו ראויים לסיפורים גדולים, בלי קשר לשפה." },
+                { "icon": "🤝", "title": "שיתוף פעולה", "description": "מעריצים, בלשנים ויוצרים פועלים יחד למען מטרה משותפת." },
+                { "icon": "🔥", "title": "תשוקה", "description": "מונעים מאהבה לעולם האווטאר ולשפה העברית." }
+            ]
+        },
+        "teamSection": {
+            "title": "הכירו את הצוות",
+            "members": [
+                { "avatar": "https://randomuser.me/api/portraits/men/32.jpg", "name": "אבי כהן", "role": "ראש הפרויקט", "bio": "חובב קוד פתוח ומעריץ אווטאר מושבע." },
+                { "avatar": "https://randomuser.me/api/portraits/women/44.jpg", "name": "נועה לוי", "role": "מתרגמת ראשית", "bio": "מתרגמת מקצועית ואוהבת עולמות פנטזיה." },
+                { "avatar": "https://randomuser.me/api/portraits/men/45.jpg", "name": "דוד אזולאי", "role": "מנהל קהילה", "bio": "מחבר בין מעריצים ובונה גשרים בין תרבויות." }
+            ]
+        },
+        "communitySection": {
+            "title": "זרקור קהילתי",
+            "highlights": [
+                { "image": "https://i.imgur.com/8Km9tLL.jpg", "title": "אמנות מעריצים: קיושי", "description": "יצירת אומנות מרהיבה של ליאור מהקהילה." },
+                { "image": "https://i.imgur.com/2nCt3Sbl.jpg", "title": "מרתון תרגום", "description": "סוף שבוע בו תורגמו 5 פרקים יחד!" },
+                { "image": "https://i.imgur.com/1A5QH0W.jpg", "title": "ערב חידון אווטאר", "description": "בדקו את הידע שלכם וזכו בפרסים בלעדיים." }
+            ]
+        },
+        "timelineSection": {
+            "title": "ציר זמן הפרויקט",
+            "milestones": [
+                { "year": "2022", "title": "הפרויקט נוסד", "description": "קבוצת מעריצים קטנה משיקה את פרויקט קיושי." },
+                { "year": "2023", "title": "הספר הראשון תורגם", "description": "עליית קיושי תורגם במלואו ופורסם בעברית." },
+                { "year": "2024", "title": "הישג קהילתי", "description": "מעל 1,000 מעריצים הצטרפו לדיסקורד ותרמו לתרגומים." }
+            ]
+        },
+        "joinUsBanner": {
+            "message": "מוכנים להצטרף למסע? בואו להיות חלק מקהילת פרויקט קיושי!",
+            "buttonText": "הצטרפו אלינו בגיטהאב"
         }
     }
 }
