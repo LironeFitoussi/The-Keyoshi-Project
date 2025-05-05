@@ -30,23 +30,15 @@ const testimonials = [
 
 const features = [
   {
-    title: "Open Source",
-    desc: "All translations and code are public and free to use.",
     icon: "🌐",
   },
   {
-    title: "Community Driven",
-    desc: "Collaborate with fans and linguists worldwide.",
     icon: "🤝",
   },
   {
-    title: "Faithful Translations",
-    desc: "Preserving the spirit and nuance of the original stories.",
     icon: "📖",
   },
   {
-    title: "For Fans, By Fans",
-    desc: "A project built by Avatar fans for the Hebrew-speaking community.",
     icon: "🔥",
   },
 ];
