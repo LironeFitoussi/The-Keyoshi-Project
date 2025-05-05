@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "../ui/card";
 import BookImage from "../Atoms/BookImage";
 import ReadButton from "../Atoms/ReadButton";
-import { Book } from "@/types";
+import { Book } from "@/types/index";
 import { useNavigate } from "react-router-dom";
 function BookCard({ book,}: {
   book: Book;

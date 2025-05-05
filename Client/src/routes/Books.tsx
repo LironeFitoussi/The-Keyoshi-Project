@@ -1,6 +1,6 @@
 import BooksContainer from "@/components/Organisms/BooksContainer";
 import { useLoaderData } from "react-router-dom";
-import { type Books } from "@/types";
+import { type Books } from "@/types/index";
 /** Simple shape for the component props */
 export interface Book {
   id: string;
