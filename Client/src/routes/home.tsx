@@ -5,42 +5,11 @@ import { TestimonialsSection } from "@/components/Organisms/TestimonialsSection"
 import { CallToActionSection } from "@/components/Organisms/CallToActionSection";
 import { useTranslation } from "react-i18next";
 
-const testimonials = [
-  {
-    name: "Jane Doe",
-    title: "Product Manager",
-    quote:
-      "This project is a gift to the Avatar community! The Hebrew translations are top-notch.",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    name: "John Smith",
-    title: "Lead Developer",
-    quote:
-      "Open source, open story. I love contributing to something meaningful.",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    name: "Emily Chen",
-    title: "Translator",
-    quote: "Translating the Avatar chronicles to Hebrew is a dream come true!",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
-  },
-];
-
 const features = [
-  {
-    icon: "🌐",
-  },
-  {
-    icon: "🤝",
-  },
-  {
-    icon: "📖",
-  },
-  {
-    icon: "🔥",
-  },
+  { icon: "🌐" },
+  { icon: "🤝" },
+  { icon: "📖" },
+  { icon: "🔥" },
 ];
 
 export default function Home() {
@@ -65,12 +34,12 @@ export default function Home() {
         }
       />
       <FeaturesSection features={features} />
-      <TestimonialsSection testimonials={testimonials} />
+      <TestimonialsSection />
       <CallToActionSection
-        title="Ready to join the journey?"
-        buttonText="Contribute on GitHub"
+        title={t("home.callToAction.title")}
+        buttonText={t("home.callToAction.buttonText")}
         githubUrl="https://github.com/your-org/your-repo"
-        subtitle="Star us and help bring the Avatar stories to more fans!"
+        subtitle={t("home.callToAction.subtitle")}
       />
     </div>
   );
