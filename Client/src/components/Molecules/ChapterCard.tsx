@@ -5,19 +5,14 @@ import { Pen } from "lucide-react";
 import IconButton from "../Atoms/IconButton";
 import WriteChapterModal from "../Organisms/WriteChapterModal";
 import { insertChapterContent } from "@/api/chapterService";
+import { Chapter } from "@/types";
 
 interface ChapterCardProps {
-  chapter: {
-    _id: string;
-    index: number;
-    title: string;
-    content: string;
-    isTranslated: boolean;
-  };
-  onClick?: () => void;
+  chapter: Chapter;
+  onChapterSelect?: (chapter: Chapter) => void;
 }
 
-const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onClick }) => {
+const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const isTranslated = chapter.isTranslated;
 
@@ -33,7 +28,7 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onClick }) => {
           ? "bg-white hover:shadow-lg cursor-pointer"
           : "bg-gray-100 text-gray-400 cursor-not-allowed opacity-60"
       }`}
-      onClick={isTranslated ? onClick : undefined}
+      onClick={isTranslated ? () => onChapterSelect?.(chapter) : undefined}
     >
       <div className="flex items-center justify-between">
         <div className="text-lg font-semibold">
@@ -57,7 +52,7 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onClick }) => {
       </div>
       <CardContent className="text-sm line-clamp-4 p-0">
         {isTranslated
-          ? chapter.content
+          ? chapter.content.slice(0, 50) + "..."
           : "This chapter has not been translated yet."}
       </CardContent>
       <WriteChapterModal

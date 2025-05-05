@@ -5,7 +5,8 @@ import {
   getChapterById,
   updateChapterById,
   deleteChapterById,
-  insertChpapterContent
+  insertChpapterContent,
+  bulkInsertChapters
 } from '../controllers/chapter.controller';
 import { validateBody } from '../utils/healthyBody.middlware';
 
@@ -21,5 +22,5 @@ router.get('/:id', getChapterById as RequestHandler);
 router.put('/:id', validateBody, updateChapterById as RequestHandler);
 router.patch('/:id', validateBody, insertChpapterContent as RequestHandler);
 router.delete('/:id', deleteChapterById as RequestHandler);
-
+router.post('/bulk/:bookId', validateBody, bulkInsertChapters as RequestHandler);
 export default router;

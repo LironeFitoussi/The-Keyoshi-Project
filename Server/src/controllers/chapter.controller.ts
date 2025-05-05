@@ -165,3 +165,35 @@ export const deleteChapterById = async (req: Request, res: Response) => {
     });
   }
 };
+
+// Chapters Bulker
+export const bulkInsertChapters = async (req: Request, res: Response) => {
+  const { bookId } = req.params;
+  const chaptersList = req.body;
+  // Modify the chapters list to add the bookId to each chapter
+  const chaptersWithBookId = chaptersList.map((chapter: any) => ({
+    ...chapter,
+    bookId: bookId
+  }));
+  try {
+    const book = await Book.findById(bookId);
+    if (!book) {
+      return res.status(404).json({
+        success: false,
+        message: 'Book not found'
+      });
+    }
+    const chapters = await Chapter.insertMany(chaptersWithBookId);
+    res.status(201).json({
+      success: true,
+      message: 'Chapters created successfully',
+      data: chapters
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Chapters creation failed',
+      error: handleMongooseError(error)
+    });
+  }
+};
