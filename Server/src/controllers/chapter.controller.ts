@@ -119,7 +119,7 @@ export const insertChpapterContent = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { content } = req.body;
   try {
-    const chapter = await Chapter.findByIdAndUpdate(id, { content }, { new: true });
+    const chapter = await Chapter.findByIdAndUpdate(id, { content, isTranslated: true }, { new: true });
     if (!chapter) {
       return res.status(404).json({
         success: false,

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Pen } from "lucide-react";
 import IconButton from "../Atoms/IconButton";
 import WriteChapterModal from "../Organisms/WriteChapterModal";
+import { insertChapterContent } from "@/api/chapterService";
 
 interface ChapterCardProps {
   chapter: {
@@ -19,6 +20,12 @@ interface ChapterCardProps {
 const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onClick }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const isTranslated = chapter.isTranslated;
+
+  const handleSubmit = async (content: string) => {
+    await insertChapterContent(chapter._id, content);
+    setModalOpen(false);
+  };
+
   return (
     <Card
       className={`min-w-[300px] flex flex-col gap-2 rounded-xl border shadow-md p-4 flex-shrink-0 transition-opacity ${
@@ -56,11 +63,8 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onClick }) => {
       <WriteChapterModal
         open={modalOpen}
         onOpenChange={setModalOpen}
-        title="Translate Chapter"
-        onSubmit={async (content: string) => {
-          console.log(content);
-          setModalOpen(false);
-        }}
+        title={`Translate Chapter: ${chapter.index}. ${chapter.title}`}
+        onSubmit={handleSubmit}
       />
     </Card>
   );
