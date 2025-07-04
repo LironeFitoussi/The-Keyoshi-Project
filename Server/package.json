@@ -7,7 +7,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "tsnd --respawn --rs --cls -r tsconfig-paths/register src/server.ts",
 		"build": "tsc && tsc-alias",
-		"start": "node dist/src/main.js"
+		"build:ui": "cd ../Client && npm install && npm run build && mkdir -p ../Server/client-dist && cp -r dist/* ../Server/client-dist/",
+		"build:full": "npm run build && npm run build:ui",
+		"start": "NODE_ENV=production node dist/src/main.js"
 	},
 	"license": "ISC",
 	"devDependencies": {
