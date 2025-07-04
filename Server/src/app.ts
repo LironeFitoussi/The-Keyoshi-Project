@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
+import path from 'path'
 
 // Routes imports 
 import bookRouter from './routes/book.routes'
@@ -14,22 +15,25 @@ app.use(express.json())
 // Allow all origins
 app.use(cors({ credentials: true }))
 
-// Test route
-app.get('/', (req, res) => {
-  res.send('API is running')
-})
-
-// function fakeLongOperationMiddleware() {
-//   return (req: Request, res: Response, next: NextFunction) => {
-//     setTimeout(() => {
-//       next()
-//     }, 1000)  
-//   }
-// }
-
-// Routes
+// API routes - place these before static file handling
 app.use('/api/v1/books', bookRouter)
 app.use('/api/v1/chapters', chapterRouter)
+
+// Serve static files from the React/Vite app build directory
+app.use(express.static(path.join(__dirname, '../../Client/dist')))
+
+// Handle React routing by serving index.html for any non-API routes
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../Client/dist/index.html'))
+})
+
+app.use((req, res, next) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, '../../Client/dist/index.html'))
+  } else {
+    next()
+  }
+})
 
 export default app
 
