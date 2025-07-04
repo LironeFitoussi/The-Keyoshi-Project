@@ -6,19 +6,19 @@
 		"noImplicitAny": true,
 		"moduleResolution": "node",
 		"sourceMap": false,
-		"rootDir": ".",
+		"rootDir": "src",
 		"strict": true,
 		"noEmit": false,
 		"resolveJsonModule": true,
 		"noUnusedLocals": true,
 		"outDir": "./dist",
-		"baseUrl": "./",
+		"baseUrl": "./src",
 		"paths": {
-			"@/*": ["src/*"]
+			"@/*": ["./*"]
 		},
 		"forceConsistentCasingInFileNames": true,
 		"allowUnreachableCode": false
 	},
-	"include": ["src/**/*", "src/utils"],
+	"include": ["src/**/*"],
 	"exclude": ["node_modules"]
 }

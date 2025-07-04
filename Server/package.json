@@ -2,14 +2,14 @@
 	"name": "ts-express-server",
 	"version": "1.0.0",
 	"description": "Express typescript powered server, with paths aliases configuration by default.",
-	"main": "src/main.js",
+	"main": "dist/server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "tsnd --respawn --rs --cls -r tsconfig-paths/register src/server.ts",
 		"build": "tsc && tsc-alias",
 		"build:ui": "cd ../Client && npm install && npm run build && mkdir -p ../Server/client-dist && cp -r dist/* ../Server/client-dist/",
 		"build:full": "npm run build && npm run build:ui",
-		"start": "NODE_ENV=production node dist/src/main.js"
+		"start": "NODE_ENV=production node dist/server.js"
 	},
 	"license": "ISC",
 	"devDependencies": {
