@@ -1,14 +1,15 @@
 // routes/book.routes.ts
 import { Router, RequestHandler } from 'express';
 import { createBook, getAllBooks, getBookById, getBookBySlug } from '../controllers/book.controller';
+import { jwtCheck, getUserProfile } from '../middleware/auth0Middleware';
 
 const bookRouter = Router();
 /*
     @route POST /api/v1/books  
     @desc Create a new book
-    @access Public
+    @access Private (Admin only)
 */
-bookRouter.post('/', createBook);
+bookRouter.post('/', jwtCheck, getUserProfile, createBook);
 
 /*
     @route GET /api/v1/books

@@ -9,6 +9,14 @@
     "chapters": "Chapters",
     "api": "API"
   },
+  "auth": {
+    "welcome": "Welcome to Keyoshi Project",
+    "description": "Sign in to contribute to the Avatar Hebrew translation project",
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "loginDescription": "Use your preferred social account to get started",
+    "loggedInAs": "Logged in as {{name}}"
+  },
   "home": {
     "hero": {
       "title": "Keyoshi Project",

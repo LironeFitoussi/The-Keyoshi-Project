@@ -115,9 +115,11 @@ export const updateChapterById = async (req: Request, res: Response) => {
   }
 };
 
-export const insertChpapterContent = async (req: Request, res: Response) => {
+export const insertChpapterContent = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const { content } = req.body;
+  const user = (req as any).user;
+  const userRole = (req as any).userRole;
 
   try {
     // Step 1: Replace "--" with double break
@@ -151,22 +153,54 @@ export const insertChpapterContent = async (req: Request, res: Response) => {
       result += wordBuffer.join(' ');
     }
 
+    let updateData: any = {};
+
+    if (userRole === 'admin') {
+      // Admin can directly update content
+      updateData = { 
+        content: result.trim(), 
+        isTranslated: true,
+        status: 'approved',
+        reviewedBy: user.id,
+        reviewedAt: new Date()
+      };
+    } else if (userRole === 'editor') {
+      // Editor submits for approval
+      updateData = {
+        submittedContent: result.trim(),
+        status: 'pending',
+        submittedBy: user.id,
+        submittedAt: new Date()
+      };
+    } else {
+      res.status(403).json({
+        success: false,
+        message: 'Access denied. Only admins and editors can edit translations.'
+      });
+      return;
+    }
+
     const chapter = await Chapter.findByIdAndUpdate(
       id,
-      { content: result.trim(), isTranslated: true },
+      updateData,
       { new: true }
     );
 
     if (!chapter) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Chapter not found',
       });
+      return;
     }
+
+    const message = userRole === 'admin' 
+      ? 'Chapter content updated successfully'
+      : 'Chapter submitted for approval successfully';
 
     res.status(200).json({
       success: true,
-      message: 'Chapter content updated successfully',
+      message,
       data: chapter,
     });
   } catch (error: any) {
@@ -231,6 +265,135 @@ export const bulkInsertChapters = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: 'Chapters creation failed',
+      error: handleMongooseError(error)
+    });
+  }
+};
+
+// Get all pending translations (Admin only)
+export const getPendingTranslations = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const pendingChapters = await Chapter.find({ status: 'pending' })
+      .populate('bookId', 'title slug')
+      .populate('submittedBy', 'firstName lastName email')
+      .sort({ submittedAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      message: 'Pending translations fetched successfully',
+      data: pendingChapters
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch pending translations',
+      error: handleMongooseError(error)
+    });
+  }
+};
+
+// Approve translation (Admin only)
+export const approveTranslation = async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+  const user = (req as any).user;
+
+  try {
+    const chapter = await Chapter.findById(id);
+    if (!chapter) {
+      res.status(404).json({
+        success: false,
+        message: 'Chapter not found'
+      });
+      return;
+    }
+
+    if (chapter.status !== 'pending') {
+      res.status(400).json({
+        success: false,
+        message: 'Chapter is not pending approval'
+      });
+      return;
+    }
+
+    if (!chapter.submittedContent) {
+      res.status(400).json({
+        success: false,
+        message: 'No submitted content found'
+      });
+      return;
+    }
+
+    const updatedChapter = await Chapter.findByIdAndUpdate(
+      id,
+      {
+        content: chapter.submittedContent,
+        isTranslated: true,
+        status: 'approved',
+        reviewedBy: user.id,
+        reviewedAt: new Date(),
+        submittedContent: undefined // Clear the submitted content
+      },
+      { new: true }
+    ).populate('submittedBy', 'firstName lastName email');
+
+    res.status(200).json({
+      success: true,
+      message: 'Translation approved successfully',
+      data: updatedChapter
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to approve translation',
+      error: handleMongooseError(error)
+    });
+  }
+};
+
+// Reject translation (Admin only)
+export const rejectTranslation = async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+  const { reason } = req.body;
+  const user = (req as any).user;
+
+  try {
+    const chapter = await Chapter.findById(id);
+    if (!chapter) {
+      res.status(404).json({
+        success: false,
+        message: 'Chapter not found'
+      });
+      return;
+    }
+
+    if (chapter.status !== 'pending') {
+      res.status(400).json({
+        success: false,
+        message: 'Chapter is not pending approval'
+      });
+      return;
+    }
+
+    const updatedChapter = await Chapter.findByIdAndUpdate(
+      id,
+      {
+        status: 'rejected',
+        reviewedBy: user.id,
+        reviewedAt: new Date(),
+        rejectionReason: reason || 'No reason provided'
+      },
+      { new: true }
+    ).populate('submittedBy', 'firstName lastName email');
+
+    res.status(200).json({
+      success: true,
+      message: 'Translation rejected successfully',
+      data: updatedChapter
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to reject translation',
       error: handleMongooseError(error)
     });
   }

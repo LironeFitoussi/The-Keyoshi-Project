@@ -19,9 +19,13 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book, onAddChapter }) => {
     title: "No Chapter Selected",
     hebrewTitle: "No Chapter Selected",
     content: "No Chapter Selected",
+    chapterNumber: 0,
+    bookId: book._id || "",
     isTranslated: false,
     index: 0,
     _id: "No Chapter Selected",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   });
   console.log(selectedChapter);
   return (

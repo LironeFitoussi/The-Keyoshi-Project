@@ -10,11 +10,15 @@ import ErrorPage from './error';
 import Books from './Books';
 import Book from './Book';
 import ApiPage from './ApiPage';
+import AuthPage from './auth';
+import AdminDashboard from './AdminDashboard';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 // Loaders
 
 import * as loaders from '@/loaders'
 import PageSpinner from '@/components/Atoms/PageSpinner';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -58,6 +62,19 @@ export const router = createBrowserRouter([
       {
         path: "/api",
         element: <ApiPage />,
+      },
+      {
+        path: 'auth',
+        element: <AuthPage />,
+      },
+      {
+        path: 'admin',
+        element: (
+          <ProtectedRoute 
+            element={<AdminDashboard />} 
+            allowedRoles={['admin']} 
+          />
+        ),
       },
     ],
   },

@@ -25,6 +25,24 @@ export const insertChapterContent = async (chapterId: string, content: string) =
   return res.data;
 };
 
+// Admin functions
+export const getPendingTranslations = async () => {
+  const res = await axiosInstance.get('/chapters/pending');
+  return res.data;
+};
+
+export const approveTranslation = async (chapterId: string) => {
+  const res = await axiosInstance.post(`/chapters/approve/${chapterId}`);
+  return res.data;
+};
+
+export const rejectTranslation = async (chapterId: string, reason?: string) => {
+  const res = await axiosInstance.post(`/chapters/reject/${chapterId}`, { reason });
+  return res.data;
+};
+
+
+
 
 
 

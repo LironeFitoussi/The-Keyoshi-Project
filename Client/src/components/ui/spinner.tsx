@@ -35,11 +35,26 @@ interface SpinnerContentProps
   children?: React.ReactNode;
 }
 
+interface SpinnerProps {
+  className?: string;
+}
+
 export function Spinner({ size, show, children, className }: SpinnerContentProps) {
   return (
     <span className={spinnerVariants({ show })}>
       <Loader2 className={cn(loaderVariants({ size }), className)} />
       {children}
     </span>
+  );
+}
+
+export function SpinnerSimple({ className }: SpinnerProps) {
+  return (
+    <div
+      className={cn(
+        "animate-spin rounded-full border-2 border-current border-t-transparent h-4 w-4",
+        className
+      )}
+    />
   );
 }
