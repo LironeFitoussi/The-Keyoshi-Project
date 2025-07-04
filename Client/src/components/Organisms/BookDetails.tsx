@@ -26,6 +26,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book, onAddChapter }) => {
     _id: "No Chapter Selected",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    status: 'draft',
   });
   console.log(selectedChapter);
   return (
