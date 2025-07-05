@@ -26,14 +26,18 @@ app.use('/api/v1/chapters', chapterRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
 
-// Serve static files from Client/dist
-const clientDistPath = path.join(__dirname, '../../Client/dist')
-app.use(express.static(clientDistPath))
+// Determine static files path based on environment
+const staticPath = process.env.NODE_ENV === 'production' 
+  ? path.join(__dirname, '../client-dist')
+  : path.join(__dirname, '../../Client/dist')
+
+// Serve static files
+app.use(express.static(staticPath))
 
 // Catch-all handler for client-side routing
 app.use((req, res, next) => {
   if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(clientDistPath, 'index.html'))
+    res.sendFile(path.join(staticPath, 'index.html'))
   } else {
     next()
   }
