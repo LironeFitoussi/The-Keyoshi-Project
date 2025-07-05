@@ -6,7 +6,11 @@ import {
   createUser,
   updateUser,
   deleteUser,
-  getUserRegex
+  getUserRegex,
+  requestEditorRole,
+  getRoleRequests,
+  approveEditorRole,
+  rejectEditorRole
 } from '../controllers/user.controller';
 import { jwtCheck, getUserProfile } from '../middleware/auth0Middleware';
 
@@ -60,5 +64,29 @@ router.delete('/:id', jwtCheck, getUserProfile, deleteUser as RequestHandler);
  * @description Get user by regex
  */
 router.get('/regex/:regex', jwtCheck, getUserProfile, getUserRegex as RequestHandler);
+
+/**
+ * Request editor role
+ * @route POST /api/v1/users/:id/request-editor
+ */
+router.post('/:id/request-editor', jwtCheck, getUserProfile, requestEditorRole as RequestHandler);
+
+/**
+ * Get all pending editor role requests (admin only)
+ * @route GET /api/v1/users/role-requests
+ */
+router.get('/role-requests', jwtCheck, getUserProfile, getRoleRequests as RequestHandler);
+
+/**
+ * Approve editor role request (admin only)
+ * @route POST /api/v1/users/:id/approve-editor
+ */
+router.post('/:id/approve-editor', jwtCheck, getUserProfile, approveEditorRole as RequestHandler);
+
+/**
+ * Reject editor role request (admin only)
+ * @route POST /api/v1/users/:id/reject-editor
+ */
+router.post('/:id/reject-editor', jwtCheck, getUserProfile, rejectEditorRole as RequestHandler);
 
 export default router; 

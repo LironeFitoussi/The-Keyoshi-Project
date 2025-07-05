@@ -9,6 +9,9 @@
     "chapters": "Chapters",
     "api": "API"
   },
+  "footer": {
+    "rights": "All rights reserved."
+  },
   "auth": {
     "welcome": "Welcome to Keyoshi Project",
     "description": "Sign in to contribute to the Avatar Hebrew translation project",

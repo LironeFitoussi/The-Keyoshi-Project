@@ -46,6 +46,22 @@ export type User = {
     state?: string;
     zip?: string;
     role: string;
+    roleRequest?: {
+        status: 'pending' | 'approved' | 'rejected' | null;
+        reason: string;
+        requestedAt?: string;
+        reviewedAt?: string;
+        reviewedBy?: string;
+        rejectionReason?: string;
+    } | null;
+}
+
+export type Auth0User = {
+    name?: string;
+    email?: string;
+    picture?: string;
+    sub?: string;
+    email_verified?: boolean;
 }
 
 export type CreateUser = Omit<User, '_id'>;

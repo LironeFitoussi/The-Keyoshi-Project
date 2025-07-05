@@ -15,6 +15,14 @@ interface UserState {
   state: string;
   zip: string;
   role: string;
+  roleRequest?: {
+    status: 'pending' | 'approved' | 'rejected' | null;
+    reason: string;
+    requestedAt?: string;
+    reviewedAt?: string;
+    reviewedBy?: string;
+    rejectionReason?: string;
+  } | null;
   isLoading: boolean;
   error: string | null;
   // Add any other user properties you need
@@ -31,6 +39,7 @@ const initialState: UserState = {
   state: '',
   zip: '',
   role: '',
+  roleRequest: null,
   isLoading: false,
   error: null,
 };
@@ -103,6 +112,7 @@ const userSlice = createSlice({
         state.state = action.payload.state || '';
         state.zip = action.payload.zip || '';
         state.role = action.payload.role;
+        state.roleRequest = action.payload.roleRequest || null;
       })
       .addCase(fetchUserByEmail.rejected, (state, action) => {
         console.log('fetchUserByEmail rejected:', action.error);

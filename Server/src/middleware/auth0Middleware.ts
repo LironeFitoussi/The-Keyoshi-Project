@@ -8,10 +8,10 @@ const userCache = new Map<string, { user: any; expiresAt: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 // Debug Auth0 configuration
-console.log('🔧 Auth0 Configuration:', {
-  AUTH0_DOMAIN: process.env.AUTH0_DOMAIN || 'NOT SET',
-  AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE || 'NOT SET'
-});
+// console.log('🔧 Auth0 Configuration:', {
+//   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN || 'NOT SET',
+//   AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE || 'NOT SET'
+// });
 
 // JWT validation middleware
 export const jwtCheck = auth({

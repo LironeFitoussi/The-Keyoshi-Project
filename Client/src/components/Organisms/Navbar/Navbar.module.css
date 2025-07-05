@@ -1,0 +1,324 @@
+/* Base */
+.navbar {
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 4rem;
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
+  align-items: center;
+  gap: 2rem;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}
+
+.centerSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: flex-end;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--primary);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+}
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawerHeader {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawerContent {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.drawerFooter {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userName {
+  font-size: 0.875rem;
+  color: var(--foreground);
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* RTL Support */
+.rtl {
+  direction: rtl;
+}
+
+.rtl .controls {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.rtl .mobileMenuButton {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+.rtl .container {
+  direction: rtl;
+}
+
+.rtl .leftSection {
+  justify-content: flex-end;
+}
+
+.rtl .rightSection {
+  justify-content: flex-start;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1rem;
+    gap: 1rem;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .userName {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .mobileMenuButton {
+    display: flex;
+  }
+
+  .centerSection {
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .controls {
+    display: none;
+  }
+
+  .rightSection {
+    display: none;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  /* RTL Mobile Specific */
+  .rtl .container {
+    flex-direction: row-reverse;
+  }
+
+  .rtl .centerSection {
+    justify-content: flex-end;
+  }
+
+  /* Drawer RTL Adjustments */
+  .rtl .drawerNav {
+    text-align: right;
+  }
+
+  .rtl .drawerFooter {
+    text-align: right;
+  }
+
+  .rtl .profileSection {
+    justify-content: flex-end;
+  }
+
+  .rtl .logoutButton {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* Mobile Navbar Styles */
+.mobileNav {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+
+.mobileNav.rtl {
+  flex-direction: row-reverse;
+}
+
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+}
+
+.mobileLogo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--foreground);
+  text-decoration: none;
+  margin: 0;
+}
+
+.mobileLogo:hover {
+  color: var(--primary);
+}
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawerHeader {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawerContent {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.drawerFooter {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Desktop Navbar Styles */
+.desktopNav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  gap: 2rem;
+}
+
+.leftSection {
+  justify-self: start;
+}
+
+.centerSection {
+  justify-self: center;
+}
+
+.rightSection {
+  justify-self: end;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--primary);
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userName {
+  font-size: 0.875rem;
+  color: var(--foreground);
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+} 

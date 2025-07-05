@@ -13,6 +13,7 @@ import ApiPage from './ApiPage';
 import AuthPage from './auth';
 import AdminDashboard from './AdminDashboard';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import RequestEditorRole from './RequestEditorRole';
 
 // Loaders
 
@@ -73,6 +74,15 @@ export const router = createBrowserRouter([
           <ProtectedRoute 
             element={<AdminDashboard />} 
             allowedRoles={['admin']} 
+          />
+        ),
+      },
+      {
+        path: 'request-editor',
+        element: (
+          <ProtectedRoute 
+            element={<RequestEditorRole />} 
+            allowedRoles={['user']} 
           />
         ),
       },

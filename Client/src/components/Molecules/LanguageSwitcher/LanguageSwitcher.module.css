@@ -1,0 +1,125 @@
+.trigger {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.trigger:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.trigger:focus-visible {
+  outline: none;
+  ring: 1px solid var(--ring);
+  ring-offset: 2px;
+}
+
+.icon {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.menuItem {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menuItem:hover {
+  background-color: var(--accent);
+}
+
+.menuItemActive {
+  composes: menuItem;
+  background-color: var(--accent);
+}
+
+.menuItemIcon {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.flagButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.flag {
+  width: auto;
+  height: 1rem;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.select {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0 1.5rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  cursor: pointer;
+  min-width: 100px;
+  text-align: start;
+  color: var(--foreground);
+}
+
+/* RTL styles */
+[dir="rtl"] .select {
+  padding: 0 0 0 1.5rem;
+}
+
+.select:focus {
+  outline: none;
+}
+
+.flagButton:hover {
+  border-color: var(--border-hover);
+}
+
+.flagButton:focus-within {
+  border-color: var(--ring);
+  ring: 2px solid var(--ring);
+  ring-offset: 2px;
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Position chevron based on text direction */
+[dir="ltr"] .chevron {
+  right: 0.5rem;
+}
+
+[dir="rtl"] .chevron {
+  left: 0.5rem;
+}
+
+/* Hide flag images in options as they don't work well in select options */
+.option img {
+  display: none;
+} 

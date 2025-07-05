@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
-interface IUser extends Document {
+export interface IUser extends Document {
   auth0Id?: string; // Auth0 user ID (e.g., google-oauth2|117280074765279489118)
   firstName: string;
   lastName?: string;
@@ -13,6 +13,14 @@ interface IUser extends Document {
   role: string;
   createdAt: Date;
   updatedAt: Date;
+  roleRequest?: {
+    status: 'pending' | 'approved' | 'rejected' | null;
+    reason: string;
+    requestedAt?: Date;
+    reviewedAt?: Date | null;
+    reviewedBy?: string | null;
+    rejectionReason?: string;
+  } | null;
 }
 
 const userSchema = new Schema<IUser>({
@@ -70,6 +78,17 @@ const userSchema = new Schema<IUser>({
     type: String,
     enum: ['admin', 'editor', 'user'],
     default: 'user'
+  },
+  roleRequest: {
+    type: {
+      status: { type: String, enum: ['pending', 'approved', 'rejected'], default: null },
+      reason: { type: String, default: '' },
+      requestedAt: { type: Date },
+      reviewedAt: { type: [Date, null], required: false, default: null },
+      reviewedBy: { type: [String, null], required: false, default: null },
+      rejectionReason: { type: String, default: '' }
+    },
+    default: null
   }
 }, {
   timestamps: true

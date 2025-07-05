@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/user.model';
+import type { IUser } from '../models/user.model';
 
 // Get all users
 export const getAllUsers = async (req: Request, res: Response) => {
@@ -129,4 +130,102 @@ export const getUserRegex = async (req: Request, res: Response) => {
         console.log(error);
         res.status(500).json({ message: 'Error fetching users', error });
     }
+};
+
+// Request editor role
+export const requestEditorRole = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  const { reason } = req.body;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (user.role === 'editor' || user.role === 'admin') {
+      return res.status(400).json({ message: 'You already have editor or admin privileges.' });
+    }
+    if (user.roleRequest && user.roleRequest.status === 'pending') {
+      return res.status(400).json({ message: 'You already have a pending request.' });
+    }
+    user.roleRequest = {
+      status: 'pending',
+      reason,
+      requestedAt: new Date(),
+      rejectionReason: ''
+    } as NonNullable<IUser['roleRequest']>;
+    await user.save();
+    res.status(200).json({ message: 'Editor role request submitted.', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Error submitting request', error });
+  }
+};
+
+// Get all pending role requests (admin)
+export const getRoleRequests = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find({
+      roleRequest: { 
+        $exists: true, 
+        $ne: null 
+      },
+      'roleRequest.status': 'pending'
+    }).select('_id firstName email roleRequest');
+    
+    if (!users.length) {
+      console.log('No pending role requests found');
+    } else {
+      console.log(`Found ${users.length} pending role requests`);
+    }
+    
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching role requests:', error);
+    res.status(500).json({ message: 'Error fetching requests', error });
+  }
+};
+
+// Approve editor role request (admin)
+export const approveEditorRole = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  const adminId = req.body.adminId; // Should be set by auth middleware in real app
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (!user.roleRequest || user.roleRequest.status !== 'pending') {
+      return res.status(400).json({ message: 'No pending request to approve.' });
+    }
+    user.role = 'editor';
+    user.roleRequest.status = 'approved';
+    user.roleRequest.reviewedAt = new Date();
+    user.roleRequest.reviewedBy = adminId || null;
+    await user.save();
+    res.status(200).json({ message: 'Editor role approved.', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Error approving request', error });
+  }
+};
+
+// Reject editor role request (admin)
+export const rejectEditorRole = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  const { reason, adminId } = req.body;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (!user.roleRequest || user.roleRequest.status !== 'pending') {
+      return res.status(400).json({ message: 'No pending request to reject.' });
+    }
+    user.roleRequest.status = 'rejected';
+    user.roleRequest.reviewedAt = new Date();
+    user.roleRequest.reviewedBy = adminId || null;
+    user.roleRequest.rejectionReason = reason || '';
+    await user.save();
+    res.status(200).json({ message: 'Editor role request rejected.', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Error rejecting request', error });
+  }
 }; 
