@@ -79,6 +79,12 @@
   overflow-y: auto;
 }
 
+.languageSwitcherContainer {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
 .drawerNav {
   display: flex;
   flex-direction: column;
@@ -93,9 +99,22 @@
   gap: 0.5rem;
 }
 
+.footerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.footerRow > :first-child {
+  flex: 1;
+}
+
 .profileSection {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 

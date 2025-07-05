@@ -8,6 +8,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, XCircle, Clock, User, Book, Calendar } from 'lucide-react';
 import { useRoleRequests } from '@/hooks/useRoleRequests';
 import { useTranslations } from '@/hooks/useTranslations';
+import { ActiveEditors } from '@/components/Organisms/ActiveEditors';
+import { UsersList } from '@/components/Organisms/UsersList';
 
 const AdminDashboard = () => {
   const { role, id: adminId } = useSelector((state: RootState) => state.user);
@@ -55,10 +57,16 @@ const AdminDashboard = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
-        <p className="text-gray-600">Manage editor requests and translations</p>
+        <p className="text-gray-600">Manage users, editor requests and translations</p>
       </div>
 
       <div className="grid gap-6">
+        {/* Users Management */}
+        <UsersList adminId={adminId} />
+
+        {/* Active Editors */}
+        <ActiveEditors />
+
         {/* Editor Role Requests */}
         <Card>
           <CardHeader>
@@ -85,10 +93,13 @@ const AdminDashboard = () => {
                             </div>
                             <div className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
-                              {new Date(request.roleRequest.requestedAt).toLocaleDateString()}
+                              {request.roleRequest?.requestedAt ? 
+                                new Date(request.roleRequest.requestedAt).toLocaleDateString() :
+                                'Date not available'
+                              }
                             </div>
                           </div>
-                          <p className="mt-2 text-gray-700">{request.roleRequest.reason}</p>
+                          <p className="mt-2 text-gray-700">{request.roleRequest?.reason || 'No reason provided'}</p>
                         </div>
                         <span className="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800">
                           Pending

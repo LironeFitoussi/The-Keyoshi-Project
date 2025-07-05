@@ -9,6 +9,7 @@ import { Auth0User } from "@/types";
 import { AdminSection } from "@/components/Molecules/AdminSection";
 import { ProfileSection } from "@/components/Molecules/ProfileSection";
 import { LogoutButton } from "@/components/Molecules/LogoutButton";
+import { LanguageSwitcher } from "@/components/Molecules/LanguageSwitcher";
 import { navigationItems } from "./Navbar";
 
 interface MobileNavbarProps {
@@ -71,12 +72,18 @@ export const MobileNavbar = ({
               <>
                 <AdminSection role={role} onNavigate={handleNavigate} />
                 <ProfileSection user={user} />
-                <LogoutButton onLogout={handleLogout} />
+                <div className={styles.footerRow}>
+                  <LogoutButton onLogout={handleLogout} />
+                  <LanguageSwitcher />
+                </div>
               </>
             ) : (
-              <Button onClick={handleLogin} variant="default" className="w-full">
-                Login
-              </Button>
+              <div className={styles.footerRow}>
+                <Button onClick={handleLogin} variant="default" className="w-full">
+                  Login
+                </Button>
+                <LanguageSwitcher />
+              </div>
             )}
           </div>
         </SheetContent>

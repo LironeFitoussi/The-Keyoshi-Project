@@ -118,5 +118,47 @@
             "message": "מוכנים להצטרף למסע? בואו להיות חלק מקהילת פרויקט קיושי!",
             "buttonText": "הצטרפו אלינו בגיטהאב"
         }
+    },
+    "contactPage": {
+        "title": "צור קשר",
+        "description": "צרו איתנו קשר בכל שאלה או בקשה לגבי פרויקט קיושי",
+        "info": {
+            "location": {
+                "label": "מיקום",
+                "value": "אולפני אווטאר, רפבליק סיטי"
+            },
+            "email": {
+                "label": "דוא״ל",
+                "value": "contact@thekeyoshiproject.com"
+            },
+            "phone": {
+                "label": "טלפון",
+                "value": "+1 (555) 123-4567"
+            }
+        },
+        "form": {
+            "title": "שלחו לנו הודעה",
+            "description": "מלאו את הטופס שלהלן ונחזור אליכם בהקדם האפשרי",
+            "fields": {
+                "name": {
+                    "label": "שם",
+                    "placeholder": "השם שלך"
+                },
+                "email": {
+                    "label": "דוא״ל",
+                    "placeholder": "your@email.com"
+                },
+                "subject": {
+                    "label": "נושא",
+                    "placeholder": "במה מדובר?"
+                },
+                "message": {
+                    "label": "הודעה",
+                    "placeholder": "ההודעה שלך..."
+                }
+            },
+            "submit": "שלח הודעה",
+            "success": "ההודעה נשלחה בהצלחה!"
+        }
     }
 }

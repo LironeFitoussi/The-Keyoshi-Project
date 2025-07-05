@@ -118,5 +118,47 @@
       "message": "Ready to join the journey? Become part of the Keyoshi Project community!",
       "buttonText": "Join us on GitHub"
     }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "description": "Get in touch with us for any inquiries about The Keyoshi Project",
+    "info": {
+      "location": {
+        "label": "Location",
+        "value": "Avatar Studios, Republic City"
+      },
+      "email": {
+        "label": "Email",
+        "value": "contact@thekeyoshiproject.com"
+      },
+      "phone": {
+        "label": "Phone",
+        "value": "+1 (555) 123-4567"
+      }
+    },
+    "form": {
+      "title": "Send us a Message",
+      "description": "Fill out the form below and we'll get back to you as soon as possible",
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "your@email.com"
+        },
+        "subject": {
+          "label": "Subject",
+          "placeholder": "What is this regarding?"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Your message..."
+        }
+      },
+      "submit": "Send Message",
+      "success": "Message sent successfully!"
+    }
   }
 }

@@ -5,8 +5,26 @@ import type { IUser } from '../models/user.model';
 // Get all users
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
-    const users = await User.find();
-    res.status(200).json(users);
+    const { role, page = 1, limit = 10 } = req.query;
+    const currentUserId = (req as any).user.id; // Get current user's ID from auth middleware
+    
+    // Build query to exclude current user
+    const query = {
+      _id: { $ne: currentUserId }, // Exclude current user
+      ...(role ? { role } : {}) // Add role filter if provided
+    };
+    
+    const skip = (Number(page) - 1) * Number(limit);
+
+    const [users, total] = await Promise.all([
+      User.find(query)
+        .skip(skip)
+        .limit(Number(limit))
+        .sort({ createdAt: -1 }),
+      User.countDocuments(query)
+    ]);
+
+    res.status(200).json({ users, total });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching users', error });
   }
@@ -187,12 +205,28 @@ export const getRoleRequests = async (req: Request, res: Response) => {
 // Approve editor role request (admin)
 export const approveEditorRole = async (req: Request, res: Response) => {
   const userId = req.params.id;
-  const adminId = req.body.adminId; // Should be set by auth middleware in real app
+  const { adminId, forceDirect = false } = req.body; // Add forceDirect flag
   try {
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+
+    // If forceDirect is true, we'll create and approve the request in one go
+    if (forceDirect) {
+      user.role = 'editor';
+      user.roleRequest = {
+        status: 'approved',
+        reason: 'Direct assignment by admin',
+        requestedAt: new Date(),
+        reviewedAt: new Date(),
+        reviewedBy: adminId || null,
+      };
+      await user.save();
+      return res.status(200).json({ message: 'Editor role assigned directly.', user });
+    }
+
+    // Original logic for pending request approval
     if (!user.roleRequest || user.roleRequest.status !== 'pending') {
       return res.status(400).json({ message: 'No pending request to approve.' });
     }
@@ -227,5 +261,36 @@ export const rejectEditorRole = async (req: Request, res: Response) => {
     res.status(200).json({ message: 'Editor role request rejected.', user });
   } catch (error) {
     res.status(500).json({ message: 'Error rejecting request', error });
+  }
+};
+
+// Revoke editor role
+export const revokeEditorRole = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  const adminId = req.body.adminId;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (user.role !== 'editor') {
+      return res.status(400).json({ message: 'User is not an editor.' });
+    }
+
+    // Add audit log entry
+    user.roleRequest = {
+      status: 'rejected',
+      reason: 'Editor role revoked by admin',
+      requestedAt: user.roleRequest?.requestedAt || new Date(),
+      reviewedAt: new Date(),
+      reviewedBy: adminId,
+      rejectionReason: 'Editor role revoked by admin'
+    };
+    user.role = 'user';
+    await user.save();
+
+    res.status(200).json({ message: 'Editor role revoked.', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Error revoking editor role', error });
   }
 }; 

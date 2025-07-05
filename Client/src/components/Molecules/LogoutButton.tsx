@@ -9,7 +9,7 @@ interface LogoutButtonProps {
 export const LogoutButton = ({ onLogout }: LogoutButtonProps) => (
   <Button
     onClick={onLogout}
-    variant="ghost"
+    variant="destructive"
     size="sm"
     className={styles.logoutButton}
   >

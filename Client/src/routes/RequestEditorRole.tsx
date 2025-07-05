@@ -24,10 +24,15 @@ export default function RequestEditorRole() {
       await requestEditorRole(id, reason);
       setSuccess('Your request has been submitted and is pending admin approval.');
     } catch (err: unknown) {
-      if (typeof err === 'object' && err && 'response' in err) {
-        setError((err as any)?.response?.data?.message || (err as Error).message || 'Failed to submit request.');
+      if (typeof err === 'object' && err && 'response' in err && err.response && 
+          typeof err.response === 'object' && 'data' in err.response && 
+          err.response.data && typeof err.response.data === 'object' && 
+          'message' in err.response.data && typeof err.response.data.message === 'string') {
+        setError(err.response.data.message);
+      } else if (err instanceof Error) {
+        setError(err.message);
       } else {
-        setError((err as Error).message || 'Failed to submit request.');
+        setError('Failed to submit request.');
       }
     } finally {
       setIsLoading(false);
