@@ -5,10 +5,11 @@ import { Button } from "@/components/ui/button";
 interface WriteChapterFormProps {
   onSubmit: (content: string) => Promise<void>;
   loading?: boolean;
+  initialContent?: string;
 }
 
-export default function WriteChapterForm({ onSubmit, loading }: WriteChapterFormProps) {
-  const [content, setContent] = useState("");
+export default function WriteChapterForm({ onSubmit, loading, initialContent }: WriteChapterFormProps) {
+  const [content, setContent] = useState(initialContent || "");
 
   const handleSubmit = async () => {
     if (!content.trim()) return;

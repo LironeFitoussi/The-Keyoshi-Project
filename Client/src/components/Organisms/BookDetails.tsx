@@ -28,14 +28,25 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book, onAddChapter }) => {
     updatedAt: new Date().toISOString(),
     status: 'draft',
   });
-  console.log(selectedChapter);
+  const [chapters, setChapters] = useState<Chapter[]>(book.chapters);
+
+  const handleChapterUpdate = (updatedChapter: Chapter) => {
+    setChapters((prev) =>
+      prev.map((ch) => (ch._id === updatedChapter._id ? { ...ch, ...updatedChapter } : ch))
+    );
+    setSelectedChapter((prev) =>
+      prev && prev._id === updatedChapter._id ? { ...prev, ...updatedChapter } : prev
+    );
+  };
+
+  // console.log(selectedChapter);
   return (
-    <Card className="p-6">
-      <CardContent className="grid grid-cols-1 sm:grid-cols-5 gap-6">
-        <div className="sm:col-span-1">
+    <Card className="p-6 rounded-none">
+      <CardContent className="grid grid-cols-1 sm:grid-cols-8 gap-6">
+        <div className="sm:col-span-3 md:col-span-2">
           <BookMainCard book={book} />
         </div>
-        <div className="sm:col-span-4">
+        <div className="sm:col-span-5 md:col-span-6">
           <ChapterDisplayer
             title={selectedChapter!.title}
             text={selectedChapter!.content}
@@ -54,8 +65,9 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book, onAddChapter }) => {
           />
         </div>
         <ChaptersList
-          chapters={book.chapters}
+          chapters={chapters}
           onChapterSelect={setSelectedChapter}
+          onChapterUpdate={handleChapterUpdate}
         />
       </div>
     </Card>

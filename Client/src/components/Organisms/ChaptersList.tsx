@@ -5,9 +5,10 @@ import React from "react";
 interface ChaptersListProps {
   chapters: Chapter[];
   onChapterSelect?: (chapter: Chapter) => void;
+  onChapterUpdate?: (updatedChapter: Chapter) => void;
 }
 
-const ChaptersList: React.FC<ChaptersListProps> = ({ chapters, onChapterSelect }) => (
+const ChaptersList: React.FC<ChaptersListProps> = ({ chapters, onChapterSelect, onChapterUpdate }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4 overflow-y-auto max-h-[calc(100vh-200px)]">
     {[...chapters]
       .sort((a, b) => a.index - b.index)
@@ -16,6 +17,7 @@ const ChaptersList: React.FC<ChaptersListProps> = ({ chapters, onChapterSelect }
           key={chapter._id}
           chapter={chapter}
           onChapterSelect={onChapterSelect}
+          onChapterUpdate={onChapterUpdate}
         />
       ))}
   </div>

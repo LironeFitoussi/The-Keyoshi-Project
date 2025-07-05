@@ -121,6 +121,38 @@ export const insertChpapterContent = async (req: Request, res: Response): Promis
   const user = (req as any).user;
   const userRole = (req as any).userRole;
 
+  // Drop translation: clear content and mark as not translated
+  if (typeof req.body.isTranslated !== 'undefined' && req.body.isTranslated === false) {
+    const chapter = await Chapter.findByIdAndUpdate(
+      id,
+      {
+        content: '',
+        isTranslated: false,
+        status: 'draft',
+        reviewedBy: undefined,
+        reviewedAt: undefined,
+        submittedContent: undefined,
+        submittedBy: undefined,
+        submittedAt: undefined,
+        rejectionReason: undefined,
+      },
+      { new: true }
+    );
+    if (!chapter) {
+      res.status(404).json({
+        success: false,
+        message: 'Chapter not found',
+      });
+      return;
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Translation dropped successfully',
+      data: chapter,
+    });
+    return;
+  }
+
   try {
     // Step 1: Replace "--" with double break
     let processedContent = content.replace(/--/g, '<br/><br/>');

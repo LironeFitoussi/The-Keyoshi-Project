@@ -6,7 +6,7 @@ function BookCard({ book }: { book: Book }) {
   return (
     <motion.div whileHover={{ scale: 1.03 }}>
       <Card className="flex flex-row sm:flex-col h-full rounded-2xl shadow-md p-0 max-h-[50vh]">
-        <div className="w-1/3 sm:w-full">
+        <div className="w-1/3 sm:w-full rounded-t-2xl overflow-hidden">
           <BookImage src={book.coverImage} alt={`Cover of ${book.title}`} />
         </div>
         <CardContent className="flex flex-1 flex-col gap-2 p-4">

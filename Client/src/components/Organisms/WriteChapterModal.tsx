@@ -12,9 +12,10 @@ interface WriteChapterModalProps {
   onSubmit: (content: string) => Promise<void>;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  initialContent?: string;
 }
 
-export default function WriteChapterModal({ title, onSubmit, open, onOpenChange }: WriteChapterModalProps) {
+export default function WriteChapterModal({ title, onSubmit, open, onOpenChange, initialContent }: WriteChapterModalProps) {
   const [loading, setLoading] = useState(false);
 
   const handleFormSubmit = async (content: string) => {
@@ -33,7 +34,7 @@ export default function WriteChapterModal({ title, onSubmit, open, onOpenChange 
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
-        <WriteChapterForm onSubmit={handleFormSubmit} loading={loading} />
+        <WriteChapterForm onSubmit={handleFormSubmit} loading={loading} initialContent={initialContent} />
       </DialogContent>
     </Dialog>
   );

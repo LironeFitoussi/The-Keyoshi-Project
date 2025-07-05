@@ -41,6 +41,16 @@ export const rejectTranslation = async (chapterId: string, reason?: string) => {
   return res.data;
 };
 
+// Drop (clear) a chapter's translation (admin only)
+export const dropTranslation = async (chapterId: string) => {
+  const res = await axiosInstance.patch(`/chapters/${chapterId}`, {
+    content: '',
+    isTranslated: false,
+    status: 'draft',
+  });
+  return res.data;
+};
+
 
 
 
