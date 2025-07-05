@@ -38,7 +38,7 @@ export default function About() {
       <JoinUsBanner
         message={t("aboutPage.joinUsBanner.message")}
         buttonText={t("aboutPage.joinUsBanner.buttonText")}
-        buttonUrl="https://github.com/your-org/your-repo"
+        buttonUrl="https://github.com/LironeFitoussi/The-Keyoshi-Project"
       />
     </div>
   );

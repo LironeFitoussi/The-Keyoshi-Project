@@ -12,6 +12,21 @@
     "footer": {
         "rights": "כל הזכויות שמורות."
     },
+    "translator": {
+        "button": {
+            "aria": "פתח את מתרגם סיפורי אווטאר"
+        },
+        "title": "מתרגם סיפורי אווטאר",
+        "description": "קבלו עזרה בתרגום והבנת סיפורי אווטאר עם ה-GPT המיוחד שלנו.",
+        "details": "ה-GPT המותאם הזה אומן לעזור בתרגום והסבר של עולם אווטאר בסגנון טבעי ועכשווי.",
+        "openButton": "פתח את מתרגם ה-GPT"
+    },
+    "translatorSection": {
+        "title": "מתרגם סיפורי אווטאר",
+        "description": "קבלו עזרה מיידית בתרגום והבנת סיפורי אווטאר עם העוזר המלאכותי המיוחד שלנו. ה-GPT המותאם שלנו אומן לעזור בהסבר עולם אווטאר בסגנון טבעי ועכשווי, מה שהופך את העולם העשיר של אווטאר לנגיש יותר לכולם.",
+        "tryButton": "נסו את מתרגם סיפורי אווטאר",
+        "learnMoreButton": "למידע נוסף"
+    },
     "auth": {
         "welcome": "ברוכים הבאים לפרויקט קיושי",
         "description": "התחברו כדי לתרום לפרויקט תרגום האווטאר לעברית",
@@ -92,6 +107,7 @@
         },
         "teamSection": {
             "title": "הכירו את הצוות",
+            "memberImageAlt": "תמונת פרופיל של {{name}}",
             "members": [
                 { "avatar": "https://randomuser.me/api/portraits/men/32.jpg", "name": "אבי כהן", "role": "ראש הפרויקט", "bio": "חובב קוד פתוח ומעריץ אווטאר מושבע." },
                 { "avatar": "https://randomuser.me/api/portraits/women/44.jpg", "name": "נועה לוי", "role": "מתרגמת ראשית", "bio": "מתרגמת מקצועית ואוהבת עולמות פנטזיה." },
@@ -100,6 +116,7 @@
         },
         "communitySection": {
             "title": "זרקור קהילתי",
+            "highlightImageAlt": "תמונת תצוגה של {{title}}",
             "highlights": [
                 { "image": "https://i.imgur.com/8Km9tLL.jpg", "title": "אמנות מעריצים: קיושי", "description": "יצירת אומנות מרהיבה של ליאור מהקהילה." },
                 { "image": "https://i.imgur.com/2nCt3Sbl.jpg", "title": "מרתון תרגום", "description": "סוף שבוע בו תורגמו 5 פרקים יחד!" },
@@ -159,6 +176,28 @@
             },
             "submit": "שלח הודעה",
             "success": "ההודעה נשלחה בהצלחה!"
+        }
+    },
+    "book": {
+        "noChapterSelected": "לא נבחר פרק",
+        "chapters": "פרקים",
+        "status": {
+            "draft": "טיוטה",
+            "inProgress": "בתהליך",
+            "completed": "הושלם"
+        },
+        "chapter": {
+            "notTranslated": "פרק זה טרם תורגם.",
+            "pendingApproval": "ממתין לאישור",
+            "translationRejected": "התרגום נדחה",
+            "edit": "ערוך",
+            "submitForApproval": "שלח לאישור",
+            "dropTranslation": "מחק תרגום",
+            "dropConfirmation": "האם אתה בטוח שברצונך למחוק את התרגום? לא ניתן לבטל פעולה זו.",
+            "cancel": "ביטול",
+            "drop": "מחק",
+            "dropping": "מוחק...",
+            "rejected": "נדחה"
         }
     }
 }

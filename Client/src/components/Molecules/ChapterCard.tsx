@@ -10,6 +10,7 @@ import { Chapter } from "@/types";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useTranslation } from "react-i18next";
 
 interface ChapterCardProps {
   chapter: Chapter;
@@ -18,6 +19,7 @@ interface ChapterCardProps {
 }
 
 const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect, onChapterUpdate }) => {
+  const { t } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
   const { role } = useSelector((state: RootState) => state.user);
   const isTranslated = chapter.isTranslated;
@@ -37,11 +39,11 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect, onC
   const getStatusText = () => {
     switch (status) {
       case 'pending':
-        return "Pending approval";
+        return t('book.chapter.pendingApproval');
       case 'rejected':
-        return "Translation rejected";
+        return t('book.chapter.translationRejected');
       default:
-        return isTranslated ? chapter.content.slice(0, 150) + "..." : "This chapter has not been translated yet.";
+        return isTranslated ? chapter.content.slice(0, 150) + "..." : t('book.chapter.notTranslated');
     }
   };
 
@@ -80,11 +82,10 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect, onC
       onClick={isTranslated ? () => onChapterSelect?.(chapter) : undefined}
     >
       <div className="flex items-center justify-between">
-        <div className="text-lg font-semibold">
+        <div className="text-lg font-semibold font-heebo">
           {chapter.index}. {chapter.title}
         </div>
         <div className="flex items-center gap-2">
-          {/* {getStatusIcon()} */}
           {isTranslated && <StatusIcon isTranslated={isTranslated} />}
         </div>
       </div>
@@ -97,7 +98,7 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect, onC
         <div className="mt-auto flex justify-center gap-6">
           <IconButton
             icon={<Pen />}
-            label={role === 'admin' ? 'Edit' : 'Submit for Approval'}
+            label={role === 'admin' ? t('book.chapter.edit') : t('book.chapter.submitForApproval')}
             variant="secondary"
             size="sm"
             onClick={(e) => {
@@ -109,7 +110,7 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect, onC
           {role === 'admin' && isTranslated && (
             <IconButton
               icon={<MdDelete />}
-              label=""
+              label={t('book.chapter.dropTranslation')}
               variant="ghost"
               size="sm"
               onClick={(e) => {
@@ -125,14 +126,14 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect, onC
 
       {status === 'rejected' && chapter.rejectionReason && (
         <div className="mt-auto p-2 bg-red-100 rounded text-xs text-red-700">
-          <strong>Rejected:</strong> {chapter.rejectionReason}
+          <strong>{t('book.chapter.rejected')}:</strong> {chapter.rejectionReason}
         </div>
       )}
 
       <WriteChapterModal
         open={modalOpen}
         onOpenChange={setModalOpen}
-        title={`${role === 'admin' ? 'Edit' : 'Submit'} Chapter: ${chapter.index}. ${chapter.title}`}
+        title={`${role === 'admin' ? t('book.chapter.edit') : t('book.chapter.submitForApproval')} ${t('nav.chapters')}: ${chapter.index}. ${chapter.title}`}
         onSubmit={handleSubmit}
         initialContent={chapter.content}
       />
@@ -141,23 +142,23 @@ const ChapterCard: React.FC<ChapterCardProps> = ({ chapter, onChapterSelect, onC
       <Dialog open={showDropConfirm} onOpenChange={setShowDropConfirm}>
         <DialogContent className="max-w-xs">
           <DialogHeader>
-            <DialogTitle>Drop Translation?</DialogTitle>
+            <DialogTitle>{t('book.chapter.dropTranslation')}?</DialogTitle>
           </DialogHeader>
-          <div className="py-2 text-sm">Are you sure you want to drop this translation? This cannot be undone.</div>
+          <div className="py-2 text-sm">{t('book.chapter.dropConfirmation')}</div>
           <div className="flex justify-end gap-2 mt-4">
             <button
               className="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 text-gray-700"
               onClick={() => setShowDropConfirm(false)}
               disabled={dropLoading}
             >
-              Cancel
+              {t('book.chapter.cancel')}
             </button>
             <button
               className="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white"
               onClick={handleDropTranslation}
               disabled={dropLoading}
             >
-              {dropLoading ? 'Dropping...' : 'Drop'}
+              {dropLoading ? t('book.chapter.dropping') : t('book.chapter.drop')}
             </button>
           </div>
         </DialogContent>

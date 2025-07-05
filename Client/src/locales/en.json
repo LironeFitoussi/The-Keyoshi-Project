@@ -12,6 +12,21 @@
   "footer": {
     "rights": "All rights reserved."
   },
+  "translator": {
+    "button": {
+      "aria": "Open Avatar Lore Translator"
+    },
+    "title": "Avatar Lore Translator",
+    "description": "Get help translating and understanding Avatar stories with our specialized GPT.",
+    "details": "This custom GPT is trained to help translate and explain Avatar lore in a natural and contemporary style.",
+    "openButton": "Open Translator GPT"
+  },
+  "translatorSection": {
+    "title": "Avatar Lore Translator",
+    "description": "Get instant help translating and understanding Avatar stories with our specialized AI assistant. Our custom GPT is trained to help explain Avatar lore in a natural and contemporary style, making the rich world of Avatar more accessible to everyone.",
+    "tryButton": "Try Avatar Lore Translator",
+    "learnMoreButton": "Learn More"
+  },
   "auth": {
     "welcome": "Welcome to Keyoshi Project",
     "description": "Sign in to contribute to the Avatar Hebrew translation project",
@@ -92,6 +107,7 @@
     },
     "teamSection": {
       "title": "Meet the Team",
+      "memberImageAlt": "Profile photo of {{name}}",
       "members": [
         { "avatar": "https://randomuser.me/api/portraits/men/32.jpg", "name": "Avi Cohen", "role": "Project Lead", "bio": "Open-source enthusiast and lifelong Avatar fan." },
         { "avatar": "https://randomuser.me/api/portraits/women/44.jpg", "name": "Noa Levi", "role": "Lead Translator", "bio": "Professional translator and lover of fantasy worlds." },
@@ -100,6 +116,7 @@
     },
     "communitySection": {
       "title": "Community Spotlight",
+      "highlightImageAlt": "{{title}} showcase image",
       "highlights": [
         { "image": "https://i.imgur.com/8Km9tLL.jpg", "title": "Fan Art: Kyoshi", "description": "Stunning artwork by community member Lior." },
         { "image": "https://i.imgur.com/2nCt3Sbl.jpg", "title": "Translation Marathon", "description": "A weekend event where fans translated 5 chapters together!" },
@@ -159,6 +176,28 @@
       },
       "submit": "Send Message",
       "success": "Message sent successfully!"
+    }
+  },
+  "book": {
+    "noChapterSelected": "No Chapter Selected",
+    "chapters": "Chapters",
+    "status": {
+      "draft": "Draft",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "chapter": {
+      "notTranslated": "This chapter has not been translated yet.",
+      "pendingApproval": "Pending approval",
+      "translationRejected": "Translation rejected",
+      "edit": "Edit",
+      "submitForApproval": "Submit for Approval",
+      "dropTranslation": "Drop Translation",
+      "dropConfirmation": "Are you sure you want to drop this translation? This cannot be undone.",
+      "cancel": "Cancel",
+      "drop": "Drop",
+      "dropping": "Dropping...",
+      "rejected": "Rejected"
     }
   }
 }

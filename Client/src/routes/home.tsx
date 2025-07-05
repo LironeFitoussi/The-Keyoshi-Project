@@ -3,6 +3,7 @@ import { AboutSection } from "@/components/Organisms/AboutSection";
 import { FeaturesSection } from "@/components/Organisms/FeaturesSection";
 import { TestimonialsSection } from "@/components/Organisms/TestimonialsSection";
 import { CallToActionSection } from "@/components/Organisms/CallToActionSection";
+import TranslatorGPTSection from "@/components/Organisms/TranslatorGPTSection";
 import { useTranslation } from "react-i18next";
 
 const features = [
@@ -23,7 +24,7 @@ export default function Home() {
         image="https://c4.wallpaperflare.com/wallpaper/870/204/59/avatar-the-last-airbender-avatar-the-last-air-bender-wallpaper-preview.jpg"
         title={t("home.hero.title")}
         subtitle={t("home.hero.subtitle")}
-        githubUrl="https://github.com/your-org/your-repo"
+        githubUrl="https://github.com/LironeFitoussi/The-Keyoshi-Project"
       />
       <AboutSection
         avatar="https://wallpapercave.com/wp/wp7916843.jpg"
@@ -34,11 +35,12 @@ export default function Home() {
         }
       />
       <FeaturesSection features={features} />
+      <TranslatorGPTSection />
       <TestimonialsSection />
       <CallToActionSection
         title={t("home.callToAction.title")}
         buttonText={t("home.callToAction.buttonText")}
-        githubUrl="https://github.com/your-org/your-repo"
+        githubUrl="https://github.com/LironeFitoussi/The-Keyoshi-Project"
         subtitle={t("home.callToAction.subtitle")}
       />
     </div>

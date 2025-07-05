@@ -3,6 +3,7 @@ import Navbar from "@/components/Organisms/Navbar/Navbar";
 import Footer from "@/components/Organisms/Footer";
 import PageSpinner from "@/components/Atoms/PageSpinner";
 import { useTranslation } from "react-i18next";
+import TranslatorGPTButton from "@/components/Molecules/TranslatorGPTButton";
 
 export default function Layout() {
   const navigation = useNavigation();
@@ -16,7 +17,8 @@ export default function Layout() {
       <div style={{ minHeight: "calc(100vh - 100px)" }}>
         <Outlet />
       </div>
-        <Footer />
+      <TranslatorGPTButton />
+      <Footer />
     </div>
   );
 }

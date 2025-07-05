@@ -18,7 +18,7 @@ export default function Footer() {
   const socialLinks = [
     {
       name: "GitHub",
-      href: "https://github.com/your-repo",
+      href: "https://github.com/LironeFitoussi/The-Keyoshi-Project",
       icon: Github,
     },
     {
@@ -33,7 +33,7 @@ export default function Footer() {
     },
     {
       name: "Email",
-      href: "mailto:contact@example.com",
+      href: "mailto:lfmydrivelf@gmail.com",
       icon: Mail,
     },
   ];
