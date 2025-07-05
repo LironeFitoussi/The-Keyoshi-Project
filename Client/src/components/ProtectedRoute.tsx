@@ -22,19 +22,19 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element, allowedRoles =
 
   // Check if user is authenticated with Auth0
   if (!isAuthenticated) {
-    console.log('Not authenticated with Auth0');
+    // console.log('Not authenticated with Auth0');
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 
   // Check if we have user data from our backend
   if (!id || !role) {
-    console.log('No user data from backend', { id, role });
+    // console.log('No user data from backend', { id, role });
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 
   // Only check roles after all loading is complete and we have user data
   if (allowedRoles.length > 0 && !allowedRoles.includes(role)) {
-    console.log('Role not allowed:', { userRole: role, allowedRoles });
+    // console.log('Role not allowed:', { userRole: role, allowedRoles });
     return <Navigate to="/" replace />;
   }
 

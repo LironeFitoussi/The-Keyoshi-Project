@@ -32,7 +32,7 @@ export default function SignInForm({switchMode}: {switchMode: () => void}) {
           client_id: import.meta.env.VITE_AUTH0_CLIENT_ID,
           client_secret: import.meta.env.VITE_AUTH0_CLIENT_SECRET,
           realm: 'Username-Password-Authentication',
-          scope: 'openid profile email',
+          scope: 'openid profile email offline_access',
           audience: `https://${import.meta.env.VITE_AUTH0_DOMAIN}/api/v2/`
         }),
       })

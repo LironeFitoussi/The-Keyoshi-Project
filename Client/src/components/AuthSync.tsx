@@ -51,13 +51,13 @@ export function AuthSync() {
 
     // Don't proceed if still loading Auth0
     if (isAuth0Loading) {
-      console.log('Auth0 still loading...');
+      // console.log('Auth0 still loading...');
       return;
     }
 
     // Only sync if we haven't attempted it yet and have user data
     if (!syncAttempted.current && user?.email && !isInitialSyncComplete) {
-      console.log('Starting initial sync for:', user.email);
+      // console.log('Starting initial sync for:', user.email);
       syncAttempted.current = true;
       
       // Wrap the dispatch in a try-catch to handle potential errors

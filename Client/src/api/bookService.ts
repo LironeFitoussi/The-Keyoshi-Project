@@ -7,7 +7,7 @@ export const getAllBooks = async () => {
     if (!res.data || !res.data.data) {
       throw new Error('Invalid response format from API');
     }
-    console.log('Books data received:', res.data);
+    // console.log('Books data received:', res.data);
     return res.data.data;
   } catch (error) {
     console.error('Failed to fetch books:', error);

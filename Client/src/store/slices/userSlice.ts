@@ -45,7 +45,7 @@ export const fetchUserByEmail = createAsyncThunk(
       // console.log('User data fetched:', response);
       return response;
     } catch (error) {
-      console.log('Error in fetchUserByEmail, creating new user');
+      // console.log('Error in fetchUserByEmail, creating new user');
       if (error instanceof AxiosError && error.response?.status === 404) {
         const newUser: Omit<UserState, 'isLoading' | 'error'> = {
           id: '', // Will be assigned by the backend
@@ -61,7 +61,7 @@ export const fetchUserByEmail = createAsyncThunk(
         };
         
         const createdUser = await userService.createUser(newUser);
-        console.log('New user created:', createdUser);
+        // console.log('New user created:', createdUser);
         return createdUser;
       }
       return rejectWithValue('Failed to fetch or create user');
@@ -74,11 +74,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<Partial<UserState>>) => {
-      console.log('Setting user state:', action.payload);
+      // console.log('Setting user state:', action.payload);
       return { ...state, ...action.payload };
     },
     resetUser: () => {
-      console.log('Resetting user state');
+      // console.log('Resetting user state');
       return initialState;
     },
   },
