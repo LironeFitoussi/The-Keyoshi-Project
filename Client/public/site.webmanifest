@@ -1,7 +1,7 @@
 {
   "name": "The Kyoshi Project",
-  "short_name": "Kyoshi",
-  "description": "Avatar Chronicles in Hebrew - Community Translation Project",
+  "short_name": "Kyoshi Project",
+  "description": "Avatar: The Last Airbender chronicles in Hebrew",
   "icons": [
     {
       "src": "/favicon/android-chrome-192x192.png",
@@ -18,7 +18,15 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "/",
-  "orientation": "portrait",
   "lang": "en",
-  "dir": "ltr"
+  "dir": "ltr",
+  "orientation": "any",
+  "categories": ["books", "education", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Books",
+      "url": "/books",
+      "description": "View all available books"
+    }
+  ]
 } 
