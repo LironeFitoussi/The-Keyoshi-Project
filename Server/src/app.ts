@@ -31,6 +31,14 @@ const staticPath = process.env.NODE_ENV === 'production'
   ? path.join(__dirname, '../client-dist')
   : path.join(__dirname, '../../Client/dist')
 
+// Cache control for static assets
+app.use((req, res, next) => {
+  if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1 year
+  }
+  next();
+});
+
 // Serve static files
 app.use(express.static(staticPath))
 
